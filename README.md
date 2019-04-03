@@ -18,12 +18,12 @@ Right now, there are only two different command line arguements that can be pass
 To create new documents (records) in your firestore database:
 
 ```
-fsuploader -u <JSON file name> <CSV file name>
+fsuploader -u <JSON file name> <FireStore URL> <CSV file name>
 ```
 
 To read all of your documents in a collection:
 ```
-fsuploader -r <JSON file name> <FireStore collection name>
+fsuploader -r <JSON file name> <FireStore URL> <FireStore collection name>
 ```
 
 
