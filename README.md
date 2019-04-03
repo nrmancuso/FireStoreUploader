@@ -8,12 +8,13 @@ Make sure you have your JSON file from the FireStore admin console, found [here]
 ### Prerequisites
 
 You need to have the Oracle JRE 11 or one of the open-source variants installed, and be familiar with the command line.
-This program only supports parsing CSV files right now.
+This program only supports parsing CSV files right now. Obviously, you will need a CSV file of books if you want to upload
+anything.  Luckily, I've included one [here](https://github.com/nmancus1/FireStoreUploader/blob/master/book_data/books.csv).
 
 
 ### Usage
 
-Right now, there are only two different command line arguements that can be passed:
+Right now, there are only two different command line arguments that can be passed:
 
 To create new documents (records) in your firestore database:
 
