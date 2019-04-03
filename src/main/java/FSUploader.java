@@ -24,6 +24,7 @@ public class FSUploader {
         String jsonFileName;
         String CSVFileName;
         String collection;
+        String firebaseURL;
         Firestore db;
 
         if (args.length == 0) {
@@ -35,9 +36,10 @@ public class FSUploader {
                 //upload to database
                 case "-u":
                     jsonFileName = args[1];
-                    CSVFileName = args[2];
+                    firebaseURL = args[2];
+                    CSVFileName = args[3];
 
-                    db = initializeDB(jsonFileName);
+                    db = initializeDB(jsonFileName, firebaseURL);
 
 
                     try {
@@ -58,9 +60,10 @@ public class FSUploader {
                 //read from database
                 case "-r":
                     jsonFileName = args[1];
-                    collection = args[2];
+                    firebaseURL = args[2];
+                    collection = args[3];
 
-                    db = initializeDB(jsonFileName);
+                    db = initializeDB(jsonFileName, firebaseURL);
 
 
                     try {
@@ -103,14 +106,14 @@ public class FSUploader {
                 "\nor print your collection to the console.");
         System.out.println();
         System.out.println("Usage:\n" +
-                "  fsuploader -u <JSON file name> <CSV file name>\n" +
-                "  fsuploader -r <JSON file name> <FireStore collection name>\n" +
+                "  fsuploader -u <JSON file name> <FireStore URL> <CSV file name>\n" +
+                "  fsuploader -r <JSON file name> <FireStore URL> <FireStore collection name>\n" +
                 "\n" +
                 "Options:\n" +
                 "  -h --help     Show this screen.\n");
     }
 
-    static Firestore initializeDB(String jsonFileName) {
+    static Firestore initializeDB(String jsonFileName, String firebaseURL) {
 
         try {
             FileInputStream serviceAccount =
@@ -118,7 +121,7 @@ public class FSUploader {
 
             FirebaseOptions options = new FirebaseOptions.Builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                    .setDatabaseUrl("https://test-90f54.firebaseio.com")
+                    .setDatabaseUrl(firebaseURL)
                     .build();
 
             FirebaseApp.initializeApp(options);
