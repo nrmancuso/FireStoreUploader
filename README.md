@@ -8,8 +8,8 @@ Make sure you have your JSON file from the FireStore admin console, found [here]
 ### Prerequisites
 
 You need to have the Oracle JRE 11 or one of the open-source variants installed, and be familiar with the command line.
-This program only supports parsing CSV files right now. Obviously, you will need a CSV file of books if you want to upload
-anything.  Luckily, I've included one [here](https://github.com/nmancus1/FireStoreUploader/blob/master/book_data/books.csv).
+This program only supports parsing XLSX files right now. Obviously, you will need a XLSX file of books if you want to upload
+anything.  Luckily, I've included one [here](https://github.com/nmancus1/FireStoreUploader/blob/master/book_data/TextBooks.xlsx).
 
 
 ### Usage
@@ -19,7 +19,7 @@ Right now, there are only two different command line arguments that can be passe
 To create new documents (records) in your firestore database:
 
 ```
-fsuploader -u <JSON file name> <FireStore URL> <CSV file name>
+fsuploader -u <JSON file name> <FireStore URL> <XLSX file name>
 ```
 
 To read all of your documents in a collection:
@@ -32,6 +32,7 @@ fsuploader -r <JSON file name> <FireStore URL> <FireStore collection name>
 
 * [FireBase](https://firebase.google.com/) - Google's NOSQL database
 * [Maven](https://maven.apache.org/) - Dependency Management
+* [Apache POI](https://poi.apache.org/apidocs/dev/org/apache/poi/xssf/usermodel/XSSFWorkbook.html) - XLSX File parsing
 
 ## Contributing
 
