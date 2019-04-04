@@ -1,20 +1,17 @@
 
 //Initialize cloud platform
-
 import com.google.api.core.ApiFuture;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.firestore.*;
-
+//Firebase imports
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
-
+//Java Imports
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 
 
 public class FSUploader {
@@ -22,7 +19,7 @@ public class FSUploader {
     public static void main(String[] args) {
 
         String jsonFileName;
-        String CSVFileName;
+        String XLSXFileName;
         String collection;
         String firebaseURL;
         Firestore db;
@@ -37,22 +34,20 @@ public class FSUploader {
                 case "-u":
                     jsonFileName = args[1];
                     firebaseURL = args[2];
-                    CSVFileName = args[3];
+                    XLSXFileName = args[3];
 
                     db = initializeDB(jsonFileName, firebaseURL);
 
 
                     try {
-                        Map<String, Book> bookmap = CSVFileReader.buildBookMap(CSVFileName);
+                        Map<String, Book> bookmap = XLSXFileReader.buildBookMap(XLSXFileName);
 
                         bookmap.forEach((k, v) -> {
-                            try {
                                 addDocument(db, "library", k, v);
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
                         });
+
                     } catch (Exception e) {
+
                         System.out.println("Problem parsing CSV file!");
                     }
                     break;
@@ -67,8 +62,11 @@ public class FSUploader {
 
 
                     try {
+
                         retrieveAllDocuments(db, collection);
+
                     } catch (Exception e) {
+
                         System.out.println("Document fetch interrupted!");
                     }
                     break;
@@ -82,6 +80,7 @@ public class FSUploader {
 
     }
 
+    // Help/ welcome dialog
     static void displayHelp() {
 
         System.out.println("  ______ _           _____ _                     \n" +
@@ -113,6 +112,7 @@ public class FSUploader {
                 "  -h --help     Show this screen.\n");
     }
 
+    //Initialize firestore database
     static Firestore initializeDB(String jsonFileName, String firebaseURL) {
 
         try {
@@ -132,6 +132,7 @@ public class FSUploader {
         return FirestoreClient.getFirestore();
     }
 
+    //List all elements in given collection
     static void retrieveAllDocuments(Firestore db, String collection) throws Exception {
 
         ApiFuture<QuerySnapshot> query = db.collection(collection).get();
@@ -157,7 +158,8 @@ public class FSUploader {
         }
     }
 
-    static void addDocument(Firestore db, String collection, String docName, Book newBook) throws Exception {
+    //Add documents to collection
+    static void addDocument(Firestore db, String collection, String docName, Book newBook) {
 
         DocumentReference docRef = db.collection(collection).document(docName);
 
@@ -177,7 +179,12 @@ public class FSUploader {
         ApiFuture<WriteResult> result = docRef.set(data);
         // ...
         // result.get() blocks on response
-        System.out.println("Update time : " + result.get().getUpdateTime());
+
+        try {
+            System.out.println("Update time : " + result.get().getUpdateTime());
+        } catch (Exception e) {
+            System.out.println("System / server time sync issue!");
+        }
     }
 }
 

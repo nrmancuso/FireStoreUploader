@@ -6,7 +6,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.*;
 import java.util.*;
 
-public class CSVFileReader {
+public class XLSXFileReader {
 
     public static Map<String, Book> buildBookMap(String XLSXFilename) throws IOException {
 
@@ -53,6 +53,7 @@ public class CSVFileReader {
 
             }
 
+            //Build book
             Book newBook = new BookBuilder()
                     .setCourseNumber(bookData[1])
                     .setSemesterCode(bookData[2])
