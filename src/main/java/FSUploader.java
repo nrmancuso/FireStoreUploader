@@ -165,11 +165,11 @@ public class FSUploader {
 
         Map<String, Object> data = new HashMap<>();
 
-        data.put("semester code", newBook.getSemesterCode());
-        data.put("course number", newBook.getCourseNumber());
-        data.put("course name", newBook.getCourseName());
-        data.put("course lead code", newBook.getCourseLeadCode());
-        data.put("course lead name", newBook.getCourseLeadName());
+        data.put("semestercode", newBook.getSemesterCode());
+        data.put("coursenumber", newBook.getCourseNumber());
+        data.put("coursename", newBook.getCourseName());
+        data.put("courseleadcode", newBook.getCourseLeadCode());
+        data.put("courseleadname", newBook.getCourseLeadName());
         data.put("ISBN", newBook.getIsbn());
         data.put("title", newBook.getTitle());
         data.put("author", newBook.getAuthor());
