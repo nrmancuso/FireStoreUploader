@@ -105,7 +105,7 @@ public class FSUploader {
                 "\nor print your collection to the console.");
         System.out.println();
         System.out.println("Usage:\n" +
-                "  fsuploader -u <JSON file name> <FireStore URL> <CSV file name>\n" +
+                "  fsuploader -u <JSON file name> <FireStore URL> <XLSX file name>\n" +
                 "  fsuploader -r <JSON file name> <FireStore URL> <FireStore collection name>\n" +
                 "\n" +
                 "Options:\n" +
