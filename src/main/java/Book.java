@@ -13,8 +13,6 @@ class Book {
     String author;
     String notes;
 
-
-
     public Book(){}
 
     public Book(String semesterCode, String courseNumber, String courseName, String courseLeadCode,
@@ -25,13 +23,6 @@ class Book {
         this.courseLeadCode = courseLeadCode;
         this.courseLeadName = courseLeadName;
         this.isbn = isbn;
-        this.title = title;
-        this.author = author;
-        this.notes = notes;
-    }
-
-    public Book(String courseLeadName, String title, String author, String notes) {
-        this.courseLeadName = courseLeadName;
         this.title = title;
         this.author = author;
         this.notes = notes;

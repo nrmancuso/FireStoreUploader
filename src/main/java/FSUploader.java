@@ -25,25 +25,27 @@ public class FSUploader {
         Firestore db;
 
         if (args.length == 0) {
+
             displayHelp();
+
         } else {
 
             switch (args[0]) {
 
                 //upload to database
                 case "-u":
+
                     jsonFileName = args[1];
                     firebaseURL = args[2];
                     XLSXFileName = args[3];
 
                     db = initializeDB(jsonFileName, firebaseURL);
 
-
                     try {
                         Map<String, Book> bookmap = XLSXFileReader.buildBookMap(XLSXFileName);
 
                         bookmap.forEach((k, v) -> {
-                                addDocument(db, "library", k, v);
+                            addDocument(db, "library", k, v);
                         });
 
                     } catch (Exception e) {
@@ -59,7 +61,6 @@ public class FSUploader {
                     collection = args[3];
 
                     db = initializeDB(jsonFileName, firebaseURL);
-
 
                     try {
 
