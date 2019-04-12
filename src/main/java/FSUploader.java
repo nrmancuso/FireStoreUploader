@@ -50,7 +50,7 @@ public class FSUploader {
 
                     } catch (Exception e) {
 
-                        System.out.println("Problem parsing XLSX file!");
+                        System.out.println("Problem parsing XLSX file!" + e);
                     }
                     break;
 

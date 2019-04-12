@@ -53,17 +53,24 @@ public class XLSXFileReader {
 
             }
 
+            Random random = new Random();
+
+            if (bookData[7] == null || bookData[7].length() < 13 || !bookData[7].matches("[0-9]+")) {
+                bookData[7] = String.valueOf(random.nextInt(999999999));
+                bookData[7].concat(String.valueOf(random.nextInt(9999)));
+            }
+
             //Build book
             Book newBook = new BookBuilder()
                     .setCourseNumber(bookData[1])
                     .setSemesterCode(bookData[2])
                     .setAuthor(bookData[4])
                     .setTitle(bookData[5])
-                    .setIsbn(bookData[7])
+                    .setIsbn(bookData[7].replaceAll("\\s","").replaceAll("-",""))
                     .setNotes(bookData[9])
                     .createBook();
 
-            bookMap.put(newBook.title, newBook);
+            bookMap.put(newBook.getIsbn(), newBook);
 
         }
 
