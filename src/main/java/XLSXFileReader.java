@@ -49,6 +49,8 @@ public class XLSXFileReader {
 
                 //Extract data and assign to correct index of tonerInfoStringArray
                 bookData[index] = cell.toString();
+                bookData[index] = bookData[index].indexOf(".") < 0 ? bookData[index] :
+                        bookData[index].replaceAll("0*$", "").replaceAll("\\.$", "");
                 index++;        //increment index
 
             }
